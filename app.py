@@ -31,13 +31,13 @@ CLOUD_TIMEOUT_SECONDS = 4.0
 LOCAL_TIMEOUT_SECONDS = 300.0
 
 
-# Variation 1: Basic classification instruction. Promt engineering alteration Zero-shot prompting
+#  Basic classification instruction. Promt engineering alteration Zero-shot prompting
 PROMPT_V1 = """
 Classify the supplied symptoms as a possible emergency or not.
 Return a JSON object describing the result.
 """
 
-# Variation 2: Add role, allowed fields, and safety boundaries.
+#  Add role, allowed fields, and safety boundaries.
 PROMPT_V2 = """
 You are the AfyaPlus symptom-triage component for an educational
 health-information application in Kenya.
@@ -47,7 +47,7 @@ Return a JSON object with the required AfyaPlus fields.
 Recommend professional medical assessment when appropriate.
 """
 
-# Variation 3: Final prompt with role-based instructions and guardrails.
+#  Final prompt with role-based instructions and guardrails.
 
 PROMPT_V3 = """
 You are AfyaPlus, a cautious symptom-triage component for an educational
