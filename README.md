@@ -68,9 +68,8 @@ wk1-capstone-project-afyaplus-triage-engine/
 ├── .env
 ├── .gitignore
 ├── app.py
-├── debug_response.py
+├── screenshots
 ├── test_cloud.py
-├── triage_engine.py
 ├── README.md
 └── .venv/
 ```
