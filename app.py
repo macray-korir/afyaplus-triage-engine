@@ -45,11 +45,7 @@ CLOUD_TIMEOUT_SECONDS = 4.0
 LOCAL_TIMEOUT_SECONDS = 300.0
 
 
-# ---------------------------------------------------------
-# 2. Prompt engineering iterations
-# ---------------------------------------------------------
-
-# Variation 1: Basic classification instruction.
+# Variation 1: Basic classification instruction. Promt engineering alteration Zero-shot prompting
 PROMPT_V1 = """
 Classify the supplied symptoms as a possible emergency or not.
 Return a JSON object describing the result.
@@ -66,7 +62,7 @@ Recommend professional medical assessment when appropriate.
 """
 
 # Variation 3: Final prompt with role-based instructions and guardrails.
-# Ask for a concise summary, not hidden step-by-step chain-of-thought.
+
 PROMPT_V3 = """
 You are AfyaPlus, a cautious symptom-triage component for an educational
 health-information application in Kenya.
@@ -107,10 +103,7 @@ Rules:
 """
 
 
-# ---------------------------------------------------------
-# 3. Validate the exact required JSON schema
-# ---------------------------------------------------------
-
+# Validate the exact required JSON schema
 REQUIRED_KEYS = {
     "is_critical_emergency",
     "detected_symptoms",
@@ -120,6 +113,7 @@ REQUIRED_KEYS = {
 
 VALID_DESTINATIONS = {"EMERGENCY", "CLINICAL_REVIEW", "ROUTINE"}
 
+# functions 
 
 def validate_result(raw_text: str) -> dict:
     """Parse JSON and reject responses that do not match the required schema."""
@@ -156,11 +150,7 @@ def validate_result(raw_text: str) -> dict:
         result["is_critical_emergency"] = True
 
     return result
-
-
-# ---------------------------------------------------------
-# 4. Cloud pathway: OpenRouter with native JSON Mode
-# ---------------------------------------------------------
+#  Cloud pathway: OpenRouter with native JSON Mode
 
 def run_cloud(user_message: str) -> dict:
     """Call the cloud model with a strict timeout and JSON Mode."""
@@ -205,9 +195,8 @@ def run_cloud(user_message: str) -> dict:
         client.close()
 
 
-# ---------------------------------------------------------
-# 5. Local pathway: Ollama fallback
-# ---------------------------------------------------------
+#  Local pathway: Ollama fallback
+
 
 def run_local(user_message: str) -> dict:
     """Send the same final prompt to the local Ollama model."""
@@ -246,10 +235,7 @@ def run_local(user_message: str) -> dict:
     return result
 
 
-# ---------------------------------------------------------
-# 6. Run cloud first, then fall back to local on failure
-# ---------------------------------------------------------
-
+# Run cloud first, then fall back to local on failure
 def run_triage(user_message: str) -> dict:
     """Try cloud inference first; use Ollama if cloud inference fails."""
     try:
@@ -291,12 +277,7 @@ def run_triage(user_message: str) -> dict:
                 "If this may be an emergency, seek emergency help now."
             ),
         }
-
-
-# ---------------------------------------------------------
-# 7. Command-line entry point
-# ---------------------------------------------------------
-
+# Command-line entry point
 if __name__ == "__main__":
     # Accept symptoms as an argument, or ask interactively.
     if len(sys.argv) > 1:
