@@ -105,10 +105,11 @@ Attempting local Ollama fallback...
   "_latency_seconds": 42.433,
   "_cloud_status": "failed; local fallback succeeded"
 }
+```
 
 ### Screenshot
 
-![Emergency routing result](screenshots/03-emergency-routing.jpeg)```
+![Emergency routing result](screenshots/03-emergency-routing.jpeg)
 
 **Observation:** The application classified the reported red-flag symptoms
 for emergency routing after falling back to the local model.
