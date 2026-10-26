@@ -1,11 +1,4 @@
-# AfyaPlus Capstone Application
-# Cloud-first triage demonstration with local Ollama fallback.
-#
-# Run:
-#   python app.py
-#   python app.py "I have a mild headache"
-#
-# IMPORTANT: This is an educational prototype, not a clinical decision tool.
+
 
 import json
 import os
@@ -16,11 +9,6 @@ from pathlib import Path
 import httpx
 from dotenv import load_dotenv
 from openai import OpenAI
-
-
-# ---------------------------------------------------------
-# 1. Load configuration and credentials safely
-# ---------------------------------------------------------
 
 PROJECT_DIR = Path(__file__).resolve().parent
 load_dotenv(PROJECT_DIR / ".env", override=True)
